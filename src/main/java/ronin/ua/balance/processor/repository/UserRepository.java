@@ -34,7 +34,6 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     """, nativeQuery = true)
     List<UserEntity> batchUpdateAndReturnProcessed(@Param("ids") UUID[] ids, @Param("balances") Double[] balances);
 
-
     @Modifying
     @Retryable(
             value = { Exception.class },
@@ -50,7 +49,6 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     WHERE u.id = up.id
     """, nativeQuery = true)
     void batchUpdate(@Param("ids") UUID[] ids, @Param("balances") Double[] balances);
-
 
 
     @Modifying

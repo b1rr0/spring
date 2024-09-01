@@ -29,7 +29,7 @@ public class UserTest extends DefaultTest {
     }
 
     private void testV1V2(String url) {
-        var response = restTemplate.postForEntity(USERS_PATH + "/fake", new CountDto(10_000), IdsDto.class);
+        var response = restTemplate.postForEntity(USERS_PATH + "/fake", new CountDto(100_000), IdsDto.class);
         Map<UUID, Double> map = new HashMap<>();
         double i = 0;
         var ids = new HashSet<>();
@@ -41,7 +41,7 @@ public class UserTest extends DefaultTest {
 
         var userResp = restTemplate.exchange(USERS_PATH + url, HttpMethod.PUT, new HttpEntity<>(map), UsersDto.class);
 
-        Assertions.assertEquals(response.getBody().ids().size(), userResp.getBody().users().size());
+        Assertions.assertEquals(response.getBody().ids().size(), Objects.requireNonNull(userResp.getBody()).users().size());
 
         for (UserDto user : userResp.getBody().users()) {
             var b = map.get(user.userId());
@@ -63,7 +63,7 @@ public class UserTest extends DefaultTest {
     }
 
     void testV3V4(String url) {
-        var response = restTemplate.postForEntity(USERS_PATH + "/fake", new CountDto(10_000), IdsDto.class);
+        var response = restTemplate.postForEntity(USERS_PATH + "/fake", new CountDto(100_000), IdsDto.class);
         Map<UUID, Double> map = new HashMap<>();
         double i = 0;
         var ids = new HashSet<>();
@@ -87,8 +87,7 @@ public class UserTest extends DefaultTest {
                 Objects.requireNonNull(userResp.getBody()).users().size());
 
         for (UserDto user : userResp.getBody().users()) {
-            var b = map.get(user.userId());
-            if (b == user.userBalance()) {
+            if (map.get(user.userId()) == user.userBalance()) {
                 ids.remove(user.userId());
             }
         }
