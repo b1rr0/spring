@@ -23,5 +23,4 @@ public class Config {
                 .description("This API exposes endpoints to manage balances");
         return new OpenAPI().info(information).servers(List.of(server));
     }
-
 }

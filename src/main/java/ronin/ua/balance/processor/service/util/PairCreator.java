@@ -12,17 +12,15 @@ public class PairCreator {
         return new Pair<>(map.keySet().toArray(new UUID[]{}), map.values().toArray(new Double[]{}));
     }
 
-
     public static Pair<UUID[], Double[]> createPair(List<Map.Entry<UUID, Double>> list) {
         UUID[] uuids = new UUID[list.size()];
         Double[] doubles = new Double[list.size()];
 
         for (int i = 0; i < list.size(); i++) {
-            var entry = list.get(i);
+            Map.Entry<UUID, Double> entry = list.get(i);
             uuids[i] = entry.getKey();
             doubles[i] = entry.getValue();
         }
         return new Pair<>(uuids, doubles);
     }
-
 }

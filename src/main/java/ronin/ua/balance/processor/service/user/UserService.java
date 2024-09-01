@@ -62,7 +62,7 @@ public class UserService {
         Collection<List<Map.Entry<UUID, Double>>> splitList = splitIntoListOfMaps(balanceMap);
         List<Callable<List<UserEntity>>> callables = splitList.stream()
                 .map(entries -> {
-                    var pair = PairCreator.createPair(entries);
+                    Pair<UUID[], Double[]> pair = PairCreator.createPair(entries);
                     return (Callable<List<UserEntity>>) () -> userRepository.batchUpdateAndReturnProcessed(pair.a, pair.b);
                 })
                 .collect(Collectors.toList());

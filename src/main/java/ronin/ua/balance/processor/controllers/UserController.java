@@ -71,5 +71,4 @@ public class UserController {
     public UsersDto getUserList(@RequestBody IdsDto idsDto) {
         return usersIterableMapper.map(userService.getUsers(idsDto.ids()));
     }
-
 }

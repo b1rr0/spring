@@ -50,7 +50,6 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     """, nativeQuery = true)
     void batchUpdate(@Param("ids") UUID[] ids, @Param("balances") Double[] balances);
 
-
     @Modifying
     @Transactional
     @Query(value = """
