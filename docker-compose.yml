@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  postgres-tmp:
+    image: postgres:15.8
+    container_name: postgres-tmp
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=usersBalancer
+    ports:
+      - 5432:5432
+
