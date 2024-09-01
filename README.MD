@@ -13,18 +13,23 @@ Once the application is running, you can interact with it using Swagger UI at:
 
 http://localhost:8080/swagger-ui/index.html#/
 
-
 ## Running Tests
-All tests are located in the test folder.
+All tests are located in the test folder.(Need to turn on docker firstly)
 You can run them to ensure everything is working as expected.
 
+## Discrepancies
+"set-users-balance" that accepts a map (int,int) -> I transformed to UUID, double.
+Perhaps this was not necessary, but it seemed more realistic to me.I hope this doesn't affect it too much.
 
+## Explanations
 Versions V3 and V4, which utilize asynchronous processing and do not return updated data, are also under consideration.
+Split Batch Processing: I prefer options that involve split batched processes (V2/V4).
+
 ## Improvements:
 Timestamp Addition: I propose adding a timestamp to messages during updates. 
 This will help in determining the recency of data when multiple messages are received.
 
-Split Batch Processing: I prefer options that involve split batched processes (V2/V4). 
+
 
 Memory Management: A single server may encounter memory limitations when handling 1,000,000 records, although it performs well with 100,000 records.
 
