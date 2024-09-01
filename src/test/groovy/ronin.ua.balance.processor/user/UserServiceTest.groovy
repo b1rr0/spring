@@ -124,13 +124,12 @@ class UserServiceTest extends Specification {
                 (id4): 400.0d
         ]
 
-
         when:
         def result = userService.splitIntoListOfMaps(balanceMap)
 
         then:
         result.size() == 4
-        result.every { it.size() == 1 } // Since there are 4 items and 2 threads, each sublist should contain 2 items
-        result.flatten().collect { it.key } as Set == balanceMap.keySet() // Ensure all keys are present
+        result.every { it.size() == 1 }
+        result.flatten().collect { it.key } as Set == balanceMap.keySet()
     }
 }

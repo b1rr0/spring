@@ -46,7 +46,7 @@ class PairCreatorTest extends Specification {
         def map = [:]
 
         when:
-        Pair<UUID[], Double[]> pair = PairCreator.createPair(map)
+        Pair<UUID[], Double[]> pair = PairCreator.createPair(map as Map<UUID, Double>)
 
         then:
         pair.a == [] as UUID[]
